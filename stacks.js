@@ -27,3 +27,46 @@ if (word == rword) {
 } else {
   console.log(`The string ${word} is not a palindrome.`);
 }
+
+// Custom stack
+
+const Stack = function() {
+  this.count = 0;
+  this.storage = {};
+
+  this.push = val => {
+    this.storage[this.count] = val;
+    this.count++;
+  };
+
+  this.pop = () => {
+    if (this.count === 0) {
+      return undefined;
+    }
+    this.count--;
+    const res = this.storage[this.count];
+    delete this.storage[this.count];
+    return res;
+  };
+
+  this.peek = () => {
+    if (this.count === 0) {
+      return undefined;
+    }
+
+    return this.storage[this.count - 1];
+  };
+
+  this.size = () => {
+    return this.count;
+  };
+};
+
+const myStack = new Stack();
+myStack.push('yes');
+console.log(myStack.peek());
+console.log(myStack.size());
+myStack.push('2');
+console.log(myStack.peek());
+console.log(myStack.pop());
+console.log(myStack.peek());
